@@ -20,18 +20,30 @@ export default class ExternalServices {
   }
 
   async getCampaigns() {
-    if (this.useMock) {
+
+    try {
+      if (this.useMock) {
       await delay(800);
       return JSON.parse(JSON.stringify(mockCampaigns));
     }
 
     const url = `/facebook/v25.0/act_${accountId}/campaigns?access_token=${token}`;
     const response = await fetch(url);
-    return convertToJson(response);
-  }
+    if (response.ok) {
+      return convertToJson(response);
+    } else {
+      throw new TypeError("Campaigns data fetching fail")
+    }
 
+    } catch ({name, message}) {
+      console.log(name);
+      console.log(message)
+    }
+    
+  } 
   async getAdSets(campaignId = null) {
-    if (this.useMock) {
+    try {
+      if (this.useMock) {
       await delay(600);
       let data = JSON.parse(JSON.stringify(mockAdSets));
       if (campaignId) {
@@ -46,11 +58,23 @@ export default class ExternalServices {
       url += `&campaign_id=${campaignId}`;
     }
     const response = await fetch(url);
-    return convertToJson(response);
+
+    if (response.ok) {
+      return convertToJson(response);
+    } else {
+      throw new TypeError("AdsSets data fetching fail")
+    }
+    
+    } catch ({name, message}) {
+      console.log(name); 
+      console.log(message); 
+
+    }
   }
 
   async getAds(adsetId = null) {
-    if (this.useMock) {
+    try {
+      if (this.useMock) {
       await delay(600);
       let data = JSON.parse(JSON.stringify(mockAds));
       if (adsetId) {
@@ -64,7 +88,17 @@ export default class ExternalServices {
       url += `&adset_id=${adsetId}`;
     }
     const response = await fetch(url);
-    return convertToJson(response);
+    if (response.ok) {
+      return convertToJson(response);
+    } else {
+      throw new TypeError("Ads data fetching fail")
+    }
+    
+    } catch ({ name, message }) {
+      console.log(name); 
+      console.log(message); 
+    }
+
   }
 
 
