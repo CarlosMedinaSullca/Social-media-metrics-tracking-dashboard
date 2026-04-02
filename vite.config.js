@@ -4,12 +4,12 @@ import { defineConfig } from "vite";
 export default defineConfig({
   server: {
     proxy: {
-      '/facebook': {
-        target: 'https://graph.facebook.com',
+      "/facebook": {
+        target: "https://graph.facebook.com",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/facebook/, '')
-      }
-    }
+        rewrite: (path) => path.replace(/^\/facebook/, ""),
+      },
+    },
   },
   root: "src/",
 
