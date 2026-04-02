@@ -6,7 +6,7 @@ This is a vanilla JavaScript dashboard that displays analized data from the Meta
 
 You can take a look of this sofware functionality in the link below. 
 
-[Software Demo Video](https://youtu.be/euSI0-iOOZw)
+[Software Demo Video](https://youtu.be/ezg43wQyzlM)
 
 # Development Environment
 
